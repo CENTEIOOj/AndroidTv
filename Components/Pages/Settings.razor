@@ -1,0 +1,106 @@
+﻿@page "/Settings"
+@inject NavigationManager Navigation
+@* @inject HttpClient Http *@
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        display: inline-block;
+        padding: 10px 15px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        background-color: #000000;
+    }
+</style>
+
+<h1>ALTERAÇÃO DA FOTO/VIDEO</h1>
+
+<label>URL da Imagem:</label>
+<input type="text" @bind="imageUrl" placeholder="Digite a URL da imagem" />
+
+<label>URL do Vídeo:</label>
+<input type="text" @bind="videoUrl" placeholder="Digite a URL do vídeo" />
+@* 
+<label>Caminho do JSON:</label>
+<input type="text" @bind="jsonPath" placeholder="Digite o caminho do JSON" /> *@
+
+@code {
+    private string imageUrl;
+    private string videoUrl;
+    // private string jsonPath;
+    // private Documento documento;
+
+    private void SavePreferences()
+    {
+        Preferences.Set("imagem", imageUrl);
+        Preferences.Set("video", videoUrl);
+    }
+
+    // private async Task LoadJson()
+    // {
+    //     try
+    //     {
+    //         documento = await Http.GetFromJsonAsync<Documento>(jsonPath);
+    //         if (documento != null)
+    //         {
+    //             Preferences.Set("titulo", documento.titulo);
+    //             Preferences.Set("texto", documento.texto);
+    //             Preferences.Set("rodape", documento.rodape);
+    //             Preferences.Set("imagem_principal", documento.imagem);
+    //             Preferences.Set("video_principal", documento.video);
+    //         }
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         Console.WriteLine($"Erro ao carregar JSON: {ex.Message}");
+    //     }
+    // }
+
+    private void NavigateToHome()
+    {
+        Navigation.NavigateTo("/", true);
+    }
+
+    // private class Documento
+    // {
+    //     public string titulo { get; set; }
+    //     public string texto { get; set; }
+    //     public string rodape { get; set; }
+    //     public string imagem { get; set; }
+    //     public string video { get; set; }
+    // }
+}
+
+<button @onclick="SavePreferences">Salvar Preferências</button>
+@* <button @onclick="LoadJson">Carregar JSON</button>
+ *@<button @onclick="NavigateToHome">HomePage</button>

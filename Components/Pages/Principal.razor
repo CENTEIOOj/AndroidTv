@@ -1,0 +1,66 @@
+﻿@page "/Principal"
+@inject NavigationManager Navigation
+@using System.Text.Json;
+@code {
+    private string titulo;
+    private string texto;
+    private string rodape;
+    private string imagemp;
+    private string videop;
+
+    // protected override void OnInitialized()
+    // {
+    //     // Carrega o JSON das preferências
+    //     var json = Preferences.Get("documento", "{}");
+    //     var documento = JsonSerializer.Deserialize<Documento>(json);
+
+    //     titulo = documento?.titulo ?? "";
+    //     texto = documento?.texto ?? "";
+    //     rodape = documento?.rodape ?? "";
+    //     imagemp = documento?.imagem  ?? "";
+    //     videop = documento?.video ?? "";
+    // }
+
+    // private class Documento
+    // {
+    //     public string titulo { get; set; }
+    //     public string texto { get; set; }
+    //     public string rodape { get; set; }
+    //     public string imagem { get; set; }
+    //     public string video { get; set; }
+    // }
+
+    private void NavigateToHome()
+    {
+        Navigation.NavigateTo("/", true);
+    }
+}
+
+<style>
+    button {
+        margin: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      
+    }
+</style>
+
+<h1>@titulo</h1>
+<body>
+    @texto
+</body>
+<footer>@rodape</footer>
+<a href="/">
+    <button>HOME</button>
+</a>
+
+<a href="/Settings">
+    <button>Ir para Settings</button>
+</a>
+
